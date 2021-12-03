@@ -1,12 +1,12 @@
-package com.jtelaa.bwbot.scheduler.util;
+package com.jtelaa.da2.scheduler.util;
 
 import java.util.Scanner;
 
-import com.jtelaa.bwbot.querygen.Main;
 import com.jtelaa.da2.lib.cli.LocalCLI;
 import com.jtelaa.da2.lib.control.Command;
 import com.jtelaa.da2.lib.log.Log;
 import com.jtelaa.da2.lib.misc.MiscUtil;
+import com.jtelaa.da2.scheduler.Main;
 
 /**
  * Local System CLI (Runs remote cli instance)

@@ -2,6 +2,19 @@ package com.jtelaa.da2.scheduler;
 
 import java.util.Properties;
 
+import com.jtelaa.da2.scheduler.util.RemoteCLI;
+import com.jtelaa.da2.scheduler.util.SysCLI;
+import com.jtelaa.da2.lib.config.PropertiesUtils;
+import com.jtelaa.da2.lib.console.ConsoleBanners;
+import com.jtelaa.da2.lib.console.ConsoleColors;
+import com.jtelaa.da2.lib.control.ComputerControl;
+import com.jtelaa.da2.lib.franchise.FranchiseUtils;
+import com.jtelaa.da2.lib.log.Log;
+import com.jtelaa.da2.lib.net.NetTools;
+import com.jtelaa.da2.lib.sql.DA2SQLQueries;
+import com.jtelaa.da2.lib.sql.EmptySQLURLException;
+import com.jtelaa.da2.lib.sql.SQL;
+
 /**
  * 
  */
@@ -47,9 +60,6 @@ public class Main {
             Log.sendManSysMessage("Loading config template");
             ComputerControl.sendCommand("cd ~/ && curl https://raw.githubusercontent.com/DA2Botnet/Scheduler-Source/main/config_template/scheduler_config.properties > scheduler_config.properties");
 
-            // Load searches
-            SearchHandler.loadRemoteSearches();
-
         }
 
         my_config = PropertiesUtils.importConfig(properties_path); 
@@ -87,6 +97,31 @@ public class Main {
     }
 
     public static void sendBootup(int da2_id) {
+
+    }
+
+     /**
+     * 
+     * @return
+     */
+
+    private static void querySettings() throws EmptySQLURLException {
+        String database = my_config.getProperty("database");
+        String table_name = my_config.getProperty("table");
+        String id_type = my_config.getProperty("key");
+        String db_ip = my_config.getProperty("db_ip");
+        String user = my_config.getProperty("db_user");
+        String passwd = my_config.getProperty("db_passwd");
+
+        DA2SQLQueries.connectionURL = SQL.getConnectionURL(db_ip, database, user, passwd);
+
+        // TODO Implement other config        
+
+        // Get ID
+        int id = DA2SQLQueries.getID(database, table_name, id_type, "IP", NetTools.getLocalIP());
+        my_config.setProperty("id", id + "");
+
+        PropertiesUtils.exportConfig(properties_path, my_config);
 
     }
 }

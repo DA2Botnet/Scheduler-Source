@@ -1,9 +1,5 @@
-package com.jtelaa.bwbot.scheduler.util;
+package com.jtelaa.da2.scheduler.util;
 
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-
-import com.jtelaa.da2.lib.bot.Bot;
 import com.jtelaa.da2.lib.cli.Cases;
 import com.jtelaa.da2.lib.cli.LocalCLI;
 import com.jtelaa.da2.lib.console.ConsoleBanners;
@@ -12,6 +8,7 @@ import com.jtelaa.da2.lib.control.Command;
 import com.jtelaa.da2.lib.control.ComputerControl;
 import com.jtelaa.da2.lib.log.Log;
 import com.jtelaa.da2.lib.misc.MiscUtil;
+import com.jtelaa.da2.scheduler.Main;
 
 public class RemoteCLI extends LocalCLI {
 
