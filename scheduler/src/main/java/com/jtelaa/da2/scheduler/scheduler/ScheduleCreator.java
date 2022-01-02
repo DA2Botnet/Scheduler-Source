@@ -27,7 +27,7 @@ public class ScheduleCreator {
 /**
  * Creates a schedule:
  * Queries a database for a list of bots
- *  For every bot, it chooses a search limit for the day, from 0-max searches. 
+ * For every bot, it chooses a search limit for the day, from 0-max searches. 
  * Next, it clumps the searches into partitions, to be executed in groups throughout the day. 
  * Finally, it chooses random times throughout the day for these search groups to be executed by that bot, with a 95% probability for the time to be between 8 am and 3 am EST. 
  * 
